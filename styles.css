@@ -1,0 +1,74 @@
+body {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.grid {
+  height: 90vmin;
+  width: 90vmin;
+  border: solid black 1px;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.grid div {
+  height: 10vmin;
+  width: 10vmin;
+}
+
+.goal-block {
+ background-image: url('images/flagfinish.png');
+ background-size: cover;
+}
+
+.starting-block {
+  background-image: url('images/grass.png');
+  background-size: cover;
+}
+
+/* !important allows to override any classes*/
+/* you can also put this part of css at the bottom of the file so that it gets executed last*/
+.frog {
+  background-image: url('images/frog.png')!important;
+  background-position: center;
+  background-size: cover;
+}
+
+.l1, .l2, .l3 {
+  background-image:url('images/wood.png');
+  background-size: cover;
+}
+
+.l4, .l5 {
+  background-image:url('images/water.png');
+  background-size: cover;
+}
+
+.c1 {
+  background-image:url('images/carleft.png');
+  background-position: center;
+  background-size: cover;
+}
+
+.c4 {
+  background-image:url('images/carright.png');
+  background-position: center;
+  background-size: cover ;
+}
+
+.c2, .c3 {
+  background-image:url('images/asphalt.png');
+  background-size: cover;
+}
+
+.grass {
+  background-image:url('images/grass.png');
+  background-size: cover;
+}
