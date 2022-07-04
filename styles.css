@@ -36,7 +36,7 @@ body {
 /* !important allows to override any classes*/
 /* you can also put this part of css at the bottom of the file so that it gets executed last*/
 .frog {
-  background-image: url('images/frog.png');
+  background-image: url('images/frog.png')!important;
   background-position: center;
   background-size: cover;
 }
