@@ -1,5 +1,6 @@
 const timeLeftDisplay = document.getElementById('time-left')
 const startPause = document.getElementById('start-pause')
+const resultDisplay = document.getElementById('result')
 const squares = document.querySelectorAll('.grid div')
 const logsLeft = document.querySelectorAll('.log-left')
 const logsRight = document.querySelectorAll('.log-right')
