@@ -14,7 +14,8 @@ let timer = null
 let outcomeTimer
 let currentTimer = 10
 let currentScore = 0;
-let currentBest = localStorage.bestFroggerScore ? JSON.parse(localStorage.bestFroggerScore) : 0
+let currentBest = localStorage.bestFroggerScore ? JSON.parse(localStorage.bestFroggerScore) : 0;
+bestScoreDisplay.textContent = currentBest;
 
 function moveFrog(e) {
   squares[currentPosition].classList.remove('frog')
@@ -154,7 +155,6 @@ function win() {
   if (squares[currentPosition].classList.contains('goal-block')) {
     startPause.textContent = 'You win !'
     setScore();
-    bestScoreDisplay.textContent = currentBest;
     submitScore();
     clearInterval(timer)
     clearInterval(outcomeTimer)
@@ -163,20 +163,24 @@ function win() {
 }
 
 function setScore() {
-  if (currentTimer > 8) {
+  if (currentTimer >= 8) {
   currentScore = currentTimer * 100;
   }
-  else if (currentTimer > 5) {
+  else if (currentTimer >= 6) {
   currentScore = currentTimer * 75;
   }
-  else {
+  else if (currentTimer >= 3) {
   currentScore = currentTimer * 50;
+  }
+  else {
+  currentScore = currentTimer * 10;
   }
   if (currentScore > currentBest) {
     currentBest = currentScore;
   }
-  localStorage.setItem("currentFroggerScore", JSON.stringify(currentScore))
-  localStorage.setItem("bestFroggerScore", JSON.stringify(currentBest))
+  bestScoreDisplay.textContent = currentBest;
+  localStorage.setItem("currentFroggerScore", JSON.stringify(currentScore));
+  localStorage.setItem("bestFroggerScore", JSON.stringify(currentBest));
 }
 
 function submitScore() {
