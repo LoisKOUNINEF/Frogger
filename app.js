@@ -1,5 +1,6 @@
 const timeLeftDisplay = document.getElementById('time-left')
 const startPause = document.getElementById('start-pause')
+const bestScoreDisplay = document.getElementById('best-score')
 const resultDisplay = document.getElementById('result')
 const squares = document.querySelectorAll('.grid div')
 const logsLeft = document.querySelectorAll('.log-left')
@@ -12,6 +13,8 @@ let currentPosition = 76
 let timer = null
 let outcomeTimer
 let currentTimer = 10
+let currentScore = 0;
+let currentBest = localStorage.bestFroggerScore ? JSON.parse(localStorage.bestFroggerScore) : 0
 
 function moveFrog(e) {
   squares[currentPosition].classList.remove('frog')
@@ -150,11 +153,59 @@ function lose() {
 function win() {
   if (squares[currentPosition].classList.contains('goal-block')) {
     startPause.textContent = 'You win !'
+    setScore();
+    bestScoreDisplay.textContent = currentBest;
+    submitScore();
     clearInterval(timer)
     clearInterval(outcomeTimer)
     document.removeEventListener('keyup', moveFrog)
   }
 }
+
+function setScore() {
+  if (currentTimer > 8) {
+  currentScore = currentTimer * 100;
+  }
+  else if (currentTimer > 5) {
+  currentScore = currentTimer * 75;
+  }
+  else {
+  currentScore = currentTimer * 50;
+  }
+  if (currentScore > currentBest) {
+    currentBest = currentScore;
+  }
+  localStorage.setItem("currentFroggerScore", JSON.stringify(currentScore))
+  localStorage.setItem("bestFroggerScore", JSON.stringify(currentBest))
+}
+
+function submitScore() {
+let userScore = parseInt(localStorage.currentFroggerScore);
+
+  let userEmail = localStorage.sharcadEmail
+  ? JSON.parse(localStorage.sharcadEmail)
+  : prompt("Enter your shaRcade email to send your score !");
+
+  if (userEmail) {
+    localStorage.setItem("sharcadEmail", JSON.stringify(userEmail));
+
+    const data = {
+      "score_token" : {
+        "hi_score" : userScore,
+        "api_key" : "VByW14pXLvJQyAln",
+        "user_email" : userEmail
+      }
+    };
+    fetch(`https://sharcade-api.herokuapp.com/sharcade_api`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    })
+    .catch((error) => console.log(error));
+  }
+};
 
 // window instead of document (that acts only on HTML)
 // keypress instead of keyup ?
