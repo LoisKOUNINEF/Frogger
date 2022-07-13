@@ -173,7 +173,7 @@ function setScore() {
   currentScore = currentTimer * 50;
   }
   else {
-  currentScore = currentTimer * 10;
+  currentScore = currentTimer * 25;
   }
   if (currentScore > currentBest) {
     currentBest = currentScore;
