@@ -196,7 +196,7 @@ let userScore = parseInt(localStorage.currentFroggerScore);
     const data = {
       "score_token" : {
         "hi_score" : userScore,
-        "api_key" : "VByW14pXLvJQyAln",
+        "api_key" : API_KEY,
         "user_email" : userEmail
       }
     };
